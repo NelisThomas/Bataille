@@ -5,16 +5,34 @@ let compDeck = [];
 let deck = [];
 const suits = ['Hearts', 'Spades', 'Clubs', 'Diamonds'];
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
-let turn = 0;
+let turn = 0;   
 let compScore = 0;
 let playerScore = 0;
+let playerCard;
+let compCard;
+
+firstPlace = document.getElementById("firstPlace");
+secondPlace = document.getElementById("secondPlace");
+playerCardValue = document.getElementById("playerCardValue");
+compCardValue = document.getElementById("compCardValue");
+cardsRemaining = document.getElementById("cardsRemaining");
 
 
-window.addEventListener("keydown",play);
 
+document.addEventListener("keydown",play);
+function updateAll(){
+    cardsRemaining.innerHTML = "Cards remaining: " + (playerDeck.length - turn);
+    playerCardValue.innerHTML = playerCard;
+    compCardValue.innerHTML = compCard;
+    if(playerScore > compScore){
+        firstPlace.innerHTML = "Player: " + playerScore;
+        secondPlace.innerHTML = "Computer: " + compScore;
+    } else {
+        firstPlace.innerHTML = "Computer: " + compScore;
+        secondPlace.innerHTML = "Player: " + playerScore;
+    }
+}
 function play(){
-    let playerCard;
-    let compCard;
     function gameOver(){
         if (playerScore > compScore){
             alert("Out of cards! You win with " + playerScore + " points. Comp has " + compScore + " points.");
@@ -39,6 +57,7 @@ function play(){
             playerScore++;
         }
         console.log(playerDeck.length - turn + " cards remaining.");
+        updateAll();
     }
     function selectCards(){
         if (turn < playerDeck.length + 1){
