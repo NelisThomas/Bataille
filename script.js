@@ -20,10 +20,20 @@ cardsRemaining = document.getElementById("cardsRemaining");
 
 
 document.addEventListener("keydown",play);
+function formatName(x){
+    y = x.split("");
+    for (i=0;i<y.length;i++){
+        if(y[i] == ' '){
+            y[i] = '_';
+        }
+    }
+    z = y.join("").toLowerCase();
+    return z;
+}
 function updateAll(){
     cardsRemaining.innerHTML = "Cards remaining: " + (playerDeck.length - turn);
-    playerCardValue.innerHTML = playerCard;
-    compCardValue.innerHTML = compCard;
+    playerCardValue.src = "SVG-cards-1.3/" + formatName(playerCard) + ".svg";
+    compCardValue.src = "SVG-cards-1.3/" + formatName(compCard) + ".svg";
     if(playerScore > compScore){
         firstPlace.innerHTML = "Player: " + playerScore;
         secondPlace.innerHTML = "Computer: " + compScore;
@@ -31,10 +41,13 @@ function updateAll(){
         firstPlace.innerHTML = "Computer: " + compScore;
         secondPlace.innerHTML = "Player: " + playerScore;
     }
+    replaceSpacewithUnderscore(playerCard);
 }
 function play(){
     function gameOver(){
-        if (playerScore > compScore){
+        if(playerScore === compScore){
+            alert("Outof cards! Tied game, you both have " + playerScore + "points!");
+        } else if (playerScore > compScore){
             alert("Out of cards! You win with " + playerScore + " points. Comp has " + compScore + " points.");
             location.reload();
         } else {

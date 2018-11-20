@@ -6,24 +6,29 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
 </head>
 <body>
-    <div class="cardDisplayContainer">
-        <div id="playerCard">
-            <p id="playerCardValue"></p>
+    <div id="outerContainer">
+        <div class="cardDisplayContainer">
+            <div id="playerCard">
+                <img id="playerCardValue" src="SVG-cards-1.3/red_joker.svg">
+                <p>Player</p>
+            </div>
+            <div id="compCard">
+                <img id="compCardValue" src="SVG-cards-1.3/black_joker.svg">
+                <p>Computer</p>
+            </div>
         </div>
-        <div id="compCard">
-            <p id="compCardValue"></p>
+        <div class="footer">
+            <div class="scoreboard">
+                <p class="score">Score:</p>
+                <p id="firstPlace">1st</p>
+                <p id="secondPlace">2nd</p>
+                <p id="cardsRemaining">Cards remaining: 26</p>
+            </div>
         </div>
-    </div>
-    <div class="footer">
-        <p id="cardsRemaining"></p>
-        <div class="scoreboard">
-            <p>Score:</p>
-            <p id="firstPlace">1st</p>
-            <p id="secondPlace">2nd</p>
-        </div>
-    </div>
-    <script src="script.js"></script>
+    </div>  
+<script src="script.js"></script>
 </body>
 </html>

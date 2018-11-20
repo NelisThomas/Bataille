@@ -5,27 +5,47 @@ body{
     left: 0;
     padding: 0;
     margin: 0;
+    background-image: url(SVG-cards-1.3/background.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat; 
+    text-align: center;
+    font-family: 'Ranga', cursive;
+}
+#outerContainer{
+    display: flex;
+    flex-direction: column;
 }
 .cardDisplayContainer{
     display: flex;
     justify-content: space-around;
     align-content: center;
-    height: 50vh;
-    border: 1px solid red;
+    height: auto;
+    margin-top: 5%;
 }
-#playerCard{
-    background-color: blue;
-}
-#compCard{
-    background-color: aqua;
+#playerCard p, #compCard p{
+    margin-top: 0;
+    font-size: 6vh;
 }
 .footer{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     position: absolute;
     bottom: 0;
     width: 100%;
+    font-size: 4vh;
 }
-.scoreboard{
-    /* float: right; */
+.score{
+    font-weight: bold;
+}
+@keyframes .slideFromLeft{
+    0%{
+        transform: rotate(xx) translateX(-100vw);
+        }
+    100%{
+        transform: rotate(xx);
+        }
+}
+
+.slideFromLeftEl{
+    animation: slideFromLeft 2s infinite 0s linear;
 }
