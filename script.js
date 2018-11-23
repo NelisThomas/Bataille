@@ -10,16 +10,19 @@ let compScore = 0;
 let playerScore = 0;
 let playerCard;
 let compCard;
-
+let playerCardsCollected = [];
+let compCardsCollected = [];
 firstPlace = document.getElementById("firstPlace");
 secondPlace = document.getElementById("secondPlace");
 playerCardValue = document.getElementById("playerCardValue");
+playerCardName = document.getElementById("playerCardName");
 compCardValue = document.getElementById("compCardValue");
+compCardName = document.getElementById("compCardName");
 cardsRemaining = document.getElementById("cardsRemaining");
 
 
 
-document.addEventListener("keydown",play);
+document.getElementById("startButton").addEventListener("click",start);
 function formatName(x){
     y = x.split("");
     for (i=0;i<y.length;i++){
@@ -33,7 +36,9 @@ function formatName(x){
 function updateAll(){
     cardsRemaining.innerHTML = "Cards remaining: " + (playerDeck.length - turn);
     playerCardValue.src = "SVG-cards-1.3/" + formatName(playerCard) + ".svg";
+    playerCardName.innerHTML = playerCard;
     compCardValue.src = "SVG-cards-1.3/" + formatName(compCard) + ".svg";
+    compCardName.innerHTML = compCard;
     if(playerScore > compScore){
         firstPlace.innerHTML = "Player: " + playerScore;
         secondPlace.innerHTML = "Computer: " + compScore;
@@ -41,7 +46,6 @@ function updateAll(){
         firstPlace.innerHTML = "Computer: " + compScore;
         secondPlace.innerHTML = "Player: " + playerScore;
     }
-    replaceSpacewithUnderscore(playerCard);
 }
 function play(){
     function gameOver(){
@@ -65,9 +69,23 @@ function play(){
         } else if(values.indexOf(comp) > values.indexOf(player)){
             console.log("comp wins");
             compScore++;
+            compCardsCollected.push(playerCard + compCard);
+            document.getElementById("compCardsCollected").appendChild(document.createElement("img"));
+            document.getElementById("compCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(playerCard) + ".svg";
+            setTimeout(() => {
+                document.getElementById("compCardsCollected").appendChild(document.createElement("img"));
+                document.getElementById("compCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(compCard) + ".svg";
+            }, 50);
         } else {
             console.log("player wins");
             playerScore++;
+            playerCardsCollected.push(compCard + playerCard);
+            document.getElementById("playerCardsCollected").appendChild(document.createElement("img"));
+            document.getElementById("playerCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(playerCard) + ".svg";
+            setTimeout(() => {
+                document.getElementById("playerCardsCollected").appendChild(document.createElement("img"));
+                document.getElementById("playerCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(compCard) + ".svg";
+            }, 200);
         }
         console.log(playerDeck.length - turn + " cards remaining.");
         updateAll();
@@ -85,6 +103,13 @@ function play(){
         }
     }
     selectCards();
+}
+function start(){
+    document.removeEventListener("click",start);
+    document.getElementById("scoreboard").removeChild(document.getElementById("startButton"));
+    setInterval(() => {
+        play();
+    }, 500);
 }
 function init(){
 function divideDeck(){

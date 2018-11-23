@@ -13,20 +13,25 @@
         <div class="cardDisplayContainer">
             <div id="playerCard">
                 <img id="playerCardValue" src="SVG-cards-1.3/red_joker.svg">
-                <p>Player</p>
+                <p id="playerCardName"></p>
+            </div>
+            <div id="scoreboard">
+                <p class="score">Score:</p>
+                <p id="firstPlace">1st Place</p>
+                <p id="secondPlace">2nd Place</p>
+                <p id="cardsRemaining">Cards remaining: 26</p>
+                <div id="startButton">
+                    <p>Start</p>
+                </div>
             </div>
             <div id="compCard">
                 <img id="compCardValue" src="SVG-cards-1.3/black_joker.svg">
-                <p>Computer</p>
+                <p id="compCardName"></p>
             </div>
         </div>
         <div class="footer">
-            <div class="scoreboard">
-                <p class="score">Score:</p>
-                <p id="firstPlace">1st</p>
-                <p id="secondPlace">2nd</p>
-                <p id="cardsRemaining">Cards remaining: 26</p>
-            </div>
+            <div id="playerCardsCollected"></div>
+            <div id="compCardsCollected"></div>
         </div>
     </div>  
 <script src="script.js"></script>

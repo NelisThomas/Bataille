@@ -22,28 +22,65 @@ body{
     height: auto;
     margin-top: 5%;
 }
-#playerCard p, #compCard p{
+/* #playerCard p, #compCard p{
     margin-top: 0;
     font-size: 6vh;
+} */
+#playerCardName, #compCardName{
+    font-size: 30px;
 }
-.footer{
+#scoreboard{
+    color: aliceblue;
     display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    font-size: 4vh;
+    flex-direction: column;
+    align-items: center;
+}
+p{
+    font-size: 5vh;
+    margin: 0;
 }
 .score{
     font-weight: bold;
+    font-size: 10vh;
+}
+#startButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: blue;
+    border: 2px solid blue;
+    height: 10vh;
+    width: 10vw;
+    border-radius: 10px;
+    margin-top: 10vh;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+#playerCardsCollected, #compCardsCollected{
+    margin-top: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 45vw;
+    margin: 3% 5% 0 5%;
+}
+#playerCardsCollected > img, #compCardsCollected > img{
+    height: 50px;
+    width: auto;
+    margin-left: 7px;
+    margin-bottom: 5px;
 }
 @keyframes .slideFromLeft{
     0%{
         transform: rotate(xx) translateX(-100vw);
-        }
+    }
     100%{
         transform: rotate(xx);
-        }
+    }
 }
 
 .slideFromLeftEl{
