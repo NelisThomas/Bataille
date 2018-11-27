@@ -21,6 +21,10 @@ compCardName = document.getElementById("compCardName");
 cardsRemaining = document.getElementById("cardsRemaining");
 
 
+let playerCollection = document.getElementById("playerCardsCollected");
+let playerContainer = document.getElementById("playerCardsCollected");
+let compCollection = document.getElementById("compCardsCollected");
+let compContainer = document.getElementById("compCardsCollected");
 
 document.getElementById("startButton").addEventListener("click",start);
 function formatName(x){
@@ -47,6 +51,30 @@ function updateAll(){
         secondPlace.innerHTML = "Player: " + playerScore;
     }
 }
+function addToCollection(y){
+    let x = eval(y+"Collection");
+    let z = [
+        `player`,
+        `comp`
+    ];
+
+    for (let i=0; i<z.length; i++){
+        let createDiv = document.createElement("div");
+        let createImg = document.createElement("img");
+        x.appendChild(createDiv);
+        x.lastChild.appendChild(createImg);
+        x.lastChild.lastChild.src = "SVG-cards-1.3/" + formatName(eval(`${z[i]}Card`)) + ".svg";
+    };
+    // for (var j=0; j>5; j++){
+    //     let createDiv = document.createElement("div");
+    //     let createImg = document.createElement("img");
+    //     console.log(j);
+    //     x.appendChild(createDiv);
+    //     x.lastChild.appendChild(createImg);
+    //     x.lastChild.lastChild.src = "SVG-cards-1.3/" + formatName(eval(z[j]+"Card")) + ".svg";
+    //     console.log(`${z[j]} Card`);
+    // }
+}
 function play(){
     function gameOver(){
         if(playerScore === compScore){
@@ -54,9 +82,11 @@ function play(){
         } else if (playerScore > compScore){
             alert("Out of cards! You win with " + playerScore + " points. Comp has " + compScore + " points.");
             location.reload();
+            console.log(playerCollection.childNodes + compCollection.childNodes);
         } else {
             alert("Out of cards! Comp wins with " + compScore + " points. You have " + playerScore + " points.");
             location.reload();
+            console.log(playerCollection.childNodes + compCollection.childNodes);
         }
     }
     function compareCards(){
@@ -70,22 +100,14 @@ function play(){
             console.log("comp wins");
             compScore++;
             compCardsCollected.push(playerCard + compCard);
-            document.getElementById("compCardsCollected").appendChild(document.createElement("img"));
-            document.getElementById("compCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(playerCard) + ".svg";
-            setTimeout(() => {
-                document.getElementById("compCardsCollected").appendChild(document.createElement("img"));
-                document.getElementById("compCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(compCard) + ".svg";
-            }, 50);
+
+            addToCollection("comp");
         } else {
             console.log("player wins");
             playerScore++;
             playerCardsCollected.push(compCard + playerCard);
-            document.getElementById("playerCardsCollected").appendChild(document.createElement("img"));
-            document.getElementById("playerCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(playerCard) + ".svg";
-            setTimeout(() => {
-                document.getElementById("playerCardsCollected").appendChild(document.createElement("img"));
-                document.getElementById("playerCardsCollected").lastChild.src = "SVG-cards-1.3/" + formatName(compCard) + ".svg";
-            }, 200);
+
+            addToCollection("player");
         }
         console.log(playerDeck.length - turn + " cards remaining.");
         updateAll();
@@ -96,7 +118,7 @@ function play(){
             compCard = compDeck[turn];
             turn++;
             if (turn > playerDeck.length){
-                gameOver();
+                // gameOver();
             } else {
                 compareCards();
             }
